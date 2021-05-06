@@ -1,0 +1,53 @@
+ext {
+
+    // Basic Android
+    gradleVersion = '4.2.0'
+    kotlinVersion = '1.5.0'
+
+    buildToolsVersion = '30.0.3'
+    compileSdkVersion = 30
+    targetSdkVersion = compileSdkVersion
+    minSdkVersion = 21
+    versionName = '1.0.0'
+
+    // Platforms
+    phonePlatform = '00'
+
+    // Incremental codes
+    phoneIncrementalCode = '0000'
+
+    // Version codes (minSdk + platform + incremental code)
+    // Inspired by: https://developer.android.com/google/play/publishing/multiple-apks#Rules
+    phoneVersionCode = (minSdkVersion + phonePlatform + phoneIncrementalCode).toInteger()
+
+
+    // AndroidX
+    androidXVersion = '1.2.0'
+    coreKtx = '1.3.2'
+    constraintLayout = '2.0.4'
+    recyclerView = '1.1.0'
+
+    // Material
+    googleMaterial = "1.3.0"
+
+    // Navigation Component
+    nav_version = '2.3.5'
+
+    //Glide
+    glide_version = '4.12.0'
+
+    //Timber
+    timber_version = '4.7.1'
+
+    //Logger
+    orhanobut_version = '2.2.0'
+
+    //Retrofit
+    retrofit_version = '2.9.0'
+
+    //Gson
+    gson_version = '2.8.6'
+
+    //ViewModel
+    lifecycle_version = '2.3.1'
+}

@@ -3,6 +3,7 @@
     package="com.eliasortiz.oompaloomparrhh">
 
     <application
+        android:name="com.eliasortiz.OompaLoompaRRHHApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
