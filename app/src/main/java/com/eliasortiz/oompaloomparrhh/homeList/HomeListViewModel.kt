@@ -1,4 +1,4 @@
-package com.eliasortiz.oompaloomparrhh.ui.homeList
+package com.eliasortiz.oompaloomparrhh.homeList
 
 import androidx.lifecycle.ViewModel
 

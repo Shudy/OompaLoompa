@@ -1,4 +1,4 @@
-package com.eliasortiz.oompaloomparrhh.ui.details
+package com.eliasortiz.oompaloomparrhh.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,15 +15,11 @@ class DetailFragment : Fragment() {
 
     private lateinit var viewModel: DetailViewModel
 
-    companion object {
-        fun newInstance() = DetailFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,7 +32,6 @@ class DetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
