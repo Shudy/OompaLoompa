@@ -23,8 +23,16 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BACKEND_ENDPOINT_BASE", '"https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/"'
+        }
+
+        debug{
+            buildConfigField "String", "BACKEND_ENDPOINT_BASE", '"https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/"'
+
+            applicationIdSuffix ".debug"
         }
     }
 
@@ -70,12 +78,14 @@ dependencies {
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // OkHttt
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
-    // Gson
-    implementation "com.google.code.gson:gson:$gson_version"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
