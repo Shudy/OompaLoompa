@@ -25,13 +25,11 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
             buildConfigField "String", "BACKEND_ENDPOINT_BASE", '"https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/"'
         }
 
-        debug{
+        debug {
             buildConfigField "String", "BACKEND_ENDPOINT_BASE", '"https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/"'
-
             applicationIdSuffix ".debug"
         }
     }
@@ -45,8 +43,8 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 
 }
