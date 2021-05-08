@@ -10,7 +10,7 @@ object OompaLoompaApi {
 
     private var instance: OompaLoompaService? = null
 
-    fun getInstance(): OompaLoompaService {
+    fun getInstance(networkConnectionInterception: NetworkConnectionInterception): OompaLoompaService {
 
         instance?.let {
             return it
@@ -23,6 +23,8 @@ object OompaLoompaApi {
                 logging.level = HttpLoggingInterceptor.Level.BASIC
                 clientBuilder.addInterceptor(logging)
             }
+
+            clientBuilder.addInterceptor(networkConnectionInterception)
 
             instance = Retrofit
                 .Builder()
