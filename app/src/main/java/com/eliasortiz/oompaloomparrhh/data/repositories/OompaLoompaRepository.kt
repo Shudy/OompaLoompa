@@ -1,10 +1,11 @@
 package com.eliasortiz.oompaloomparrhh.data.repositories
 
-import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaApi
 import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaService
 import com.eliasortiz.oompaloomparrhh.data.network.SafeApiRequest
 
-class OompaLoompaRepository(private val api: OompaLoompaService) : SafeApiRequest() {
+class OompaLoompaRepository(
+    private val api: OompaLoompaService
+) : SafeApiRequest() {
 
     suspend fun getOompaLoompasList(page: Int) = apiRequest { api.getOompaLoompas(page) }
 
@@ -12,11 +13,12 @@ class OompaLoompaRepository(private val api: OompaLoompaService) : SafeApiReques
 
     companion object {
         private var instance: OompaLoompaRepository? = null
-        fun getInstance(): OompaLoompaRepository {
+
+        fun getInstance(api: OompaLoompaService): OompaLoompaRepository {
             instance?.let {
                 return it
             } ?: run {
-                instance = OompaLoompaRepository(OompaLoompaApi.getInstance())
+                instance = OompaLoompaRepository(api)
                 return instance!!
             }
         }
