@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Oompa Loompa RRHH</string>
+    <string name="nameAndSurname">\%s %s\</string>
 </resources>
