@@ -119,7 +119,11 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
 
     override fun onOompaLoompaClicked(id: Int) {
         Toast.makeText(context, "OompaLoompa Clicked: $id", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(HomeListFragmentDirections.actionHomeListFragmentToDetailFragment())
+        findNavController().navigate(
+            HomeListFragmentDirections.actionHomeListFragmentToDetailFragment(
+                id
+            )
+        )
     }
 
 }

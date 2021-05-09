@@ -1,6 +1,5 @@
 package com.eliasortiz.oompaloomparrhh.data.network
 
-import com.eliasortiz.oompaloomparrhh.data.network.reponse.OompaLoompasResponse
 import com.eliasortiz.oompaloomparrhh.utils.ResultResponse
 import com.eliasortiz.oompaloomparrhh.utils.exceptions.NoInternetException
 import org.json.JSONException
@@ -16,7 +15,7 @@ abstract class SafeApiRequest {
             if (response.isSuccessful) {
 
                 response.body()?.let { body ->
-                    Timber.d("Total data loaded: ${(body as OompaLoompasResponse).results?.size}")
+                    Timber.d("Data loaded")
                     return ResultResponse.Success(body)
                 } ?: run {
                     Timber.w("Call successful, but empty body")
