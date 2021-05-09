@@ -1,10 +1,12 @@
 package com.eliasortiz.oompaloomparrhh.data.network
 
+import com.eliasortiz.oompaloomparrhh.data.network.reponse.OompaLoompasResponse
 import com.eliasortiz.oompaloomparrhh.utils.ResultResponse
 import com.eliasortiz.oompaloomparrhh.utils.exceptions.NoInternetException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
+import timber.log.Timber
 
 abstract class SafeApiRequest {
 
@@ -14,8 +16,10 @@ abstract class SafeApiRequest {
             if (response.isSuccessful) {
 
                 response.body()?.let { body ->
+                    Timber.d("Total data loaded: ${(body as OompaLoompasResponse).results?.size}")
                     return ResultResponse.Success(body)
                 } ?: run {
+                    Timber.w("Call successful, but empty body")
                     return ResultResponse.Failure(message = "Empty body")
                 }
 
@@ -31,9 +35,11 @@ abstract class SafeApiRequest {
                     }
                 }
 
+                Timber.e("Failure call:\nCode:${response.code().toString()}\nMessage:${message}")
                 return ResultResponse.Failure(response.code().toString(), message.toString())
             }
         } catch (e: NoInternetException) {
+            Timber.e("Failure call: Internet connection not available")
             return ResultResponse.Failure(message = e.localizedMessage)
         }
     }

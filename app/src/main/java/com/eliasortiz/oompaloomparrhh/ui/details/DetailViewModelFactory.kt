@@ -1,4 +1,4 @@
-package com.eliasortiz.oompaloomparrhh.details
+package com.eliasortiz.oompaloomparrhh.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

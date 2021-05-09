@@ -1,4 +1,4 @@
-package com.eliasortiz.oompaloomparrhh.main
+package com.eliasortiz.oompaloomparrhh.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
