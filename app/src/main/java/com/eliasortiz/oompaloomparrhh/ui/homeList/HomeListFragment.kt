@@ -168,7 +168,11 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
     }
 
     override fun onOompaLoompaClicked(id: Int) {
-        findNavController().navigate(HomeListFragmentDirections.actionHomeListFragmentToDetailFragment())
+        findNavController().navigate(
+            HomeListFragmentDirections.actionHomeListFragmentToDetailFragment(
+                id
+            )
+        )
     }
 
 }

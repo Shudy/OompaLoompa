@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Oompa Loompa RRHH</string>
-    <string name="nameAndSurname">\%s %s\</string>
     <string name="genderTitle">Gender:</string>
     <string name="professionTitle">Profession:</string>
     <string name="filters_title">Filters</string>
+    <string name="nameAndSurname">%s %s</string>
+    <string name="age">Age:\n%s</string>
+    <string name="gender">Gender:\n%s</string>
+    <string name="height">Height:\n%s</string>
+    <string name="email">Email</string>
+    <string name="country">Country</string>
+    <string name="description">Description</string>
+    <string name="color">Color</string>
+    <string name="food">Food</string>
+    <string name="song">Song</string>
+    <string name="randomText">Random text</string>
 </resources>

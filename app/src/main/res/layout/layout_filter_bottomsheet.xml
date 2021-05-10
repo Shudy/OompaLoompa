@@ -15,8 +15,8 @@
         app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardElevation="@dimen/card_view_elevation"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:strokeColor="#F5F5F5"
-        app:strokeWidth="1dp">
+        app:strokeColor="@color/color_stats_background"
+        app:strokeWidth="@dimen/card_view_stroke_width">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_width="@dimen/handler_width"
                 android:layout_height="@dimen/handler_height"
                 android:layout_marginTop="@dimen/generic_margin_16"
-                android:background="#F5F5F5"
+                android:background="@color/color_stats_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/generic_margin_16"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/generic_margin_8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />
@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/generic_margin_16"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/generic_margin_8"
                 android:layout_marginBottom="@dimen/generic_margin_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

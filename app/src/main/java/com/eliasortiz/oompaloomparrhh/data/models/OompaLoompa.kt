@@ -35,5 +35,11 @@ data class OompaLoompa(
     val age: Int? = null,
 
     @field:SerializedName("height")
-    val height: Int? = null
+    val height: Int? = null,
+
+    @field:SerializedName("quota")
+    val quota: String? = null,
+
+    @field:SerializedName("description")
+    val description: String? = null
 )
