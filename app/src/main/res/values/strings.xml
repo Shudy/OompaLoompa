@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Oompa Loompa RRHH</string>
     <string name="nameAndSurname">\%s %s\</string>
+    <string name="filters_title">Filters</string>
 </resources>
