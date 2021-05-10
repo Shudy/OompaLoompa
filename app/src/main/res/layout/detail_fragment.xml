@@ -6,144 +6,128 @@
     android:layout_height="match_parent"
     tools:context=".ui.details.DetailFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/profile_background"
-        android:backgroundTint="@color/color_details_header"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/generic_margin_32"
-        app:cardCornerRadius="@dimen/card_view_corner_radius"
-        app:cardElevation="@dimen/card_view_elevation"
-        app:layout_constraintBottom_toBottomOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline"
-        app:strokeColor="@color/color_light_gray"
-        app:strokeWidth="@dimen/card_view_stroke_width">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@id/image"
-                android:layout_width="@dimen/image_size_width"
-                android:layout_height="@dimen/image_size_width"
-                android:layout_marginVertical="@dimen/generic_margin_16"
-                android:layout_marginStart="@dimen/generic_margin_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/name_surname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/generic_margin_16"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textSize="@dimen/title_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/profession"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name and Surname" />
-
-            <TextView
-                android:id="@+id/profession"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/generic_margin_16"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textSize="@dimen/subtitle_text_size"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image"
-                app:layout_constraintTop_toBottomOf="@+id/name_surname"
-                tools:text="Profession" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/generic_margin_16"
-                android:background="@drawable/rounded_background"
-                android:backgroundTint="@color/color_stats_background"
-                android:paddingVertical="@dimen/generic_padding_4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image"
-                app:layout_constraintTop_toBottomOf="@+id/profession">
-
-                <TextView
-                    android:id="@+id/age"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/generic_margin_2"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:textSize="@dimen/subtitle_text_size"
-                    tools:text="Age:\n35" />
-
-                <TextView
-                    android:id="@+id/gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/generic_margin_8"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:textSize="@dimen/subtitle_text_size"
-                    tools:text="Gender:\nM" />
-
-                <TextView
-                    android:id="@+id/ol_height"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/generic_margin_2"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:textSize="@dimen/subtitle_text_size"
-                    tools:text="Height:\n99" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/generic_margin_32"
+                android:layout_marginTop="@dimen/generic_margin_32"
+                app:cardCornerRadius="@dimen/card_view_corner_radius"
+                app:cardElevation="@dimen/card_view_elevation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/color_light_gray"
+                app:strokeWidth="@dimen/card_view_stroke_width">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@id/image"
+                        android:layout_width="@dimen/image_size_width"
+                        android:layout_height="@dimen/image_size_width"
+                        android:layout_marginVertical="@dimen/generic_margin_16"
+                        android:layout_marginStart="@dimen/generic_margin_16"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/name_surname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/generic_margin_16"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textSize="@dimen/title_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/profession"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Name and Surname" />
+
+                    <TextView
+                        android:id="@+id/profession"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/generic_margin_16"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image"
+                        app:layout_constraintTop_toBottomOf="@+id/name_surname"
+                        tools:text="Profession" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/generic_margin_16"
+                        android:background="@drawable/rounded_background"
+                        android:backgroundTint="@color/color_stats_background"
+                        android:paddingVertical="@dimen/generic_padding_4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginBottom="@dimen/generic_padding_4"
+                        app:layout_constraintStart_toEndOf="@id/image"
+                        app:layout_constraintTop_toBottomOf="@+id/profession">
+
+                        <TextView
+                            android:id="@+id/age"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/generic_margin_2"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:textSize="@dimen/subtitle_text_size"
+                            tools:text="Age:\n35" />
+
+                        <TextView
+                            android:id="@+id/gender"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/generic_margin_8"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:textSize="@dimen/subtitle_text_size"
+                            tools:text="Gender:\nM" />
+
+                        <TextView
+                            android:id="@+id/ol_height"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/generic_margin_2"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:textSize="@dimen/subtitle_text_size"
+                            tools:text="Height:\n99" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/generic_data"
@@ -155,7 +139,7 @@
                 app:cardElevation="@dimen/card_view_elevation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header"
                 app:strokeColor="@color/color_light_gray"
                 app:strokeWidth="@dimen/card_view_stroke_width">
 
