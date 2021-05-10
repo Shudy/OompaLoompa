@@ -7,5 +7,9 @@
     <dimen name="card_view_corner_radius">12dp</dimen>
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="subtitle_text_size">15sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="bottomsheet_corner_radius">8dp</dimen>
+    <dimen name="bottomsheet_elevation">8dp</dimen>
+    <dimen name="handler_width">32dp</dimen>
+    <dimen name="handler_height">2dp</dimen>
 </resources>
