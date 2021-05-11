@@ -4,8 +4,10 @@ import android.app.Application
 import com.eliasortiz.oompaloomparrhh.BuildConfig
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class OompaLoompaRRHHApp : Application() {
 
     override fun onCreate() {

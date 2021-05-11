@@ -14,7 +14,9 @@ import com.eliasortiz.oompaloomparrhh.data.network.NetworkConnectionInterception
 import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaApi
 import com.eliasortiz.oompaloomparrhh.data.repositories.OompaLoompaRepository
 import com.eliasortiz.oompaloomparrhh.databinding.DetailFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: DetailFragmentBinding? = null

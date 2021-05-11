@@ -21,7 +21,9 @@ import com.eliasortiz.oompaloomparrhh.ui.listeners.OompaLoompaListListener
 import com.eliasortiz.oompaloomparrhh.ui.recyclerDecorators.OompaLoompaDecorator
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeListFragment : Fragment(), OompaLoompaListListener {
 
     private var _binding: HomeListFragmentBinding? = null
