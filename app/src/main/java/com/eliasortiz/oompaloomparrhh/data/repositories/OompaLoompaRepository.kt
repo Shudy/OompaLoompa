@@ -1,26 +1,13 @@
 package com.eliasortiz.oompaloomparrhh.data.repositories
 
-import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaService
-import com.eliasortiz.oompaloomparrhh.data.network.SafeApiRequest
+import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompaModel
+import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompasResponseModel
+import com.eliasortiz.oompaloomparrhh.utils.ResultResponse
 
-class OompaLoompaRepository(
-    private val api: OompaLoompaService
-) : SafeApiRequest() {
+interface OompaLoompaRepository {
 
-    suspend fun getOompaLoompasList(page: Int) = apiRequest { api.getOompaLoompas(page) }
+    suspend fun getOompaLoompasList(page: Int): ResultResponse<OompaLoompasResponseModel>
 
-    suspend fun getOompaLoompa(id: Int) = apiRequest { api.getOompaLoompa(id) }
+    suspend fun getOompaLoompa(id: Int): ResultResponse<OompaLoompaModel>
 
-    companion object {
-        private var instance: OompaLoompaRepository? = null
-
-        fun getInstance(api: OompaLoompaService): OompaLoompaRepository {
-            instance?.let {
-                return it
-            } ?: run {
-                instance = OompaLoompaRepository(api)
-                return instance!!
-            }
-        }
-    }
 }
