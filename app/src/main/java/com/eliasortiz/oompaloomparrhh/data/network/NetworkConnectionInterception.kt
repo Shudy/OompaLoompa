@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import com.eliasortiz.oompaloomparrhh.R
 import com.eliasortiz.oompaloomparrhh.utils.exceptions.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -14,7 +15,7 @@ class NetworkConnectionInterception(context: Context) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable()) {
-            throw NoInternetException("No internet connection available")
+            throw NoInternetException(applicationContext.getString(R.string.errorNetworkConnection))
         } else {
             return chain.proceed(chain.request())
         }
@@ -45,7 +46,6 @@ class NetworkConnectionInterception(context: Context) : Interceptor {
                         ConnectivityManager.TYPE_ETHERNET -> true
                         else -> false
                     }
-
                 }
             }
         }

@@ -2,32 +2,38 @@ package com.eliasortiz.oompaloomparrhh.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompa
+import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompaModel
 import com.eliasortiz.oompaloomparrhh.data.repositories.OompaLoompaRepository
 import com.eliasortiz.oompaloomparrhh.utils.Coroutines
 import com.eliasortiz.oompaloomparrhh.utils.ResultResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel
+@Inject constructor(
     private val repository: OompaLoompaRepository,
-    private val id: Int
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var oompaLoompa: OompaLoompa? = null
-    private val oompaLoompaLiveData: MutableLiveData<OompaLoompa?> = MutableLiveData(oompaLoompa)
+    private var oompaLoompa: OompaLoompaModel? = null
+    private val oompaLoompaLiveData: MutableLiveData<OompaLoompaModel?> =
+        MutableLiveData(oompaLoompa)
 
     init {
         Coroutines.main {
-            val response = repository.getOompaLoompa(id)
-            when (response) {
-                is ResultResponse.Loading -> {
-                }
-                is ResultResponse.Failure -> {
-                }
-                is ResultResponse.Success -> {
-                    val data = response.data as? OompaLoompa
-                    data?.let {
-                        oompaLoompa = it
+            savedStateHandle.get<Int>("id")?.let { id ->
+                val response = repository.getOompaLoompa(id)
+                when (response) {
+                    is ResultResponse.Loading -> {
+                    }
+                    is ResultResponse.Failure -> {
+                    }
+                    is ResultResponse.Success -> {
+                        val data = response.data as OompaLoompaModel
+                        oompaLoompa = data
                         oompaLoompaLiveData.postValue(oompaLoompa)
                     }
                 }
@@ -35,5 +41,5 @@ class DetailViewModel(
         }
     }
 
-    fun getOompaLoompaLiveData(): LiveData<OompaLoompa?> = oompaLoompaLiveData
+    fun getOompaLoompaLiveData(): LiveData<OompaLoompaModel?> = oompaLoompaLiveData
 }

@@ -5,14 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.eliasortiz.oompaloomparrhh.R
-import com.eliasortiz.oompaloomparrhh.data.network.NetworkConnectionInterception
-import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaApi
-import com.eliasortiz.oompaloomparrhh.data.repositories.OompaLoompaRepository
 import com.eliasortiz.oompaloomparrhh.databinding.DetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,19 +18,7 @@ class DetailFragment : Fragment() {
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: DetailViewModel
-    private val args: DetailFragmentArgs by navArgs()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val api = OompaLoompaApi.getInstance(NetworkConnectionInterception(requireContext()))
-        val repository = OompaLoompaRepository.getInstance(api)
-        val factory = DetailViewModelFactory(repository = repository, id = args.id)
-
-        viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
-
-    }
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,11 +31,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setViewModelObservers()
     }
 
-    fun setViewModelObservers() {
+    private fun setViewModelObservers() {
         viewModel.getOompaLoompaLiveData().observe(viewLifecycleOwner) { oompaLoompa ->
             oompaLoompa?.let { oL ->
 

@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eliasortiz.oompaloomparrhh.R
-import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompa
-import com.eliasortiz.oompaloomparrhh.data.network.NetworkConnectionInterception
-import com.eliasortiz.oompaloomparrhh.data.network.OompaLoompaApi
-import com.eliasortiz.oompaloomparrhh.data.repositories.OompaLoompaRepository
+import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompaModel
 import com.eliasortiz.oompaloomparrhh.databinding.HomeListFragmentBinding
 import com.eliasortiz.oompaloomparrhh.ui.adapters.OompaLoompaAdapter
 import com.eliasortiz.oompaloomparrhh.ui.customViews.FiltersBottomSheet
@@ -29,9 +26,10 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
     private var _binding: HomeListFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeListViewModel
+    private val viewModel: HomeListViewModel by viewModels()
+
     private lateinit var oompaLoompaAdapter: OompaLoompaAdapter
-    private val oompaLoompaList: MutableList<OompaLoompa> = mutableListOf()
+    private val oompaLoompaList: MutableList<OompaLoompaModel> = mutableListOf()
 
     //Variables to handle scrolling and request more data to repository
     private var isLoadingData = false
@@ -51,13 +49,6 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val api = OompaLoompaApi.getInstance(NetworkConnectionInterception(requireContext()))
-        val repository = OompaLoompaRepository.getInstance(api)
-        val factory = HomeListViewModelFactory(repository = repository)
-
-        viewModel = ViewModelProvider(this, factory).get(HomeListViewModel::class.java)
-
         oompaLoompaAdapter = OompaLoompaAdapter(oompaLoompaList, this)
     }
 
@@ -65,7 +56,6 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
         super.onViewCreated(view, savedInstanceState)
 
         setRecylerView()
-
         setViewModelObservers()
         setClickListeners()
         setListeners()
@@ -176,5 +166,4 @@ class HomeListFragment : Fragment(), OompaLoompaListListener {
             )
         )
     }
-
 }

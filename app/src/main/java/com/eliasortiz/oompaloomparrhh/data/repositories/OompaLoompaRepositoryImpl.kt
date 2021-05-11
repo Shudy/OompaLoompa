@@ -22,11 +22,11 @@ class OompaLoompaRepositoryImpl
         val networkResponse = apiRequest { api.getOompaLoompas(page) }
         when (networkResponse) {
             is ResultResponse.Loading -> {
-                return networkResponse
+                return ResultResponse.Loading
             }
 
             is ResultResponse.Failure -> {
-                return networkResponse
+                return ResultResponse.Failure(networkResponse.errorCode, networkResponse.message)
             }
 
             is ResultResponse.Success -> {
@@ -43,8 +43,11 @@ class OompaLoompaRepositoryImpl
         val responseApi = apiRequest { api.getOompaLoompa(id) }
 
         return when (responseApi) {
-            is ResultResponse.Failure -> responseApi
-            is ResultResponse.Loading -> responseApi
+            is ResultResponse.Failure -> ResultResponse.Failure(
+                responseApi.errorCode,
+                responseApi.message
+            )
+            is ResultResponse.Loading -> ResultResponse.Loading
             is ResultResponse.Success -> {
                 ResultResponse.Success(
                     oompaLoompaAPIMapper.mapToModel(responseApi.data as OompaLoompaModelAPI)
