@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.eliasortiz.oompaloomparrhh.data.models.FilterOptionWithStatus
+import com.eliasortiz.oompaloomparrhh.data.models.FilterOptionWithStatusModel
 import com.eliasortiz.oompaloomparrhh.databinding.LayoutFilterBottomsheetBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -56,11 +56,11 @@ class FiltersBottomSheet @JvmOverloads constructor(
         this.listener = listener
     }
 
-    fun setGenderOptions(title: String, options: List<FilterOptionWithStatus>) {
+    fun setGenderOptions(title: String, options: List<FilterOptionWithStatusModel>) {
         binding.genderFilter.setTitleAndOptions(title, options)
     }
 
-    fun setProfessionOptions(title: String, options: List<FilterOptionWithStatus>) {
+    fun setProfessionOptions(title: String, options: List<FilterOptionWithStatusModel>) {
         binding.professionFilter.setTitleAndOptions(title, options)
     }
 

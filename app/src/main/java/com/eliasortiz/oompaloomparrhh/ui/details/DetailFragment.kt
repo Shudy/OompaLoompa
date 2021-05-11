@@ -91,12 +91,12 @@ class DetailFragment : Fragment() {
                     oL.description
                 )
 
-                binding.color.setTitleAndDescription(getString(R.string.color), oL.favorite?.color)
-                binding.food.setTitleAndDescription(getString(R.string.food), oL.favorite?.food)
-                binding.song.setTitleAndDescription(getString(R.string.song), oL.favorite?.song)
+                binding.color.setTitleAndDescription(getString(R.string.color), oL.favorite.color)
+                binding.food.setTitleAndDescription(getString(R.string.food), oL.favorite.food)
+                binding.song.setTitleAndDescription(getString(R.string.song), oL.favorite.song)
                 binding.randomText.setTitleAndDescription(
                     getString(R.string.randomText),
-                    oL.favorite?.randomString
+                    oL.favorite.randomString
                 )
             }
         }

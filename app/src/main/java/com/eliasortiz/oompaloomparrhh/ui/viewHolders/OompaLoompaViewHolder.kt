@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.eliasortiz.oompaloomparrhh.R
-import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompa
+import com.eliasortiz.oompaloomparrhh.data.models.OompaLoompaModel
 import com.eliasortiz.oompaloomparrhh.databinding.LayoutOompaLoompaViewHolderBinding
 import com.eliasortiz.oompaloomparrhh.ui.listeners.OompaLoompaListListener
 
@@ -14,7 +14,7 @@ class OompaLoompaViewHolder(
 ) :
     RecyclerView.ViewHolder(view.root) {
 
-    fun bindView(oompaLoompa: OompaLoompa) {
+    fun bindView(oompaLoompa: OompaLoompaModel) {
 
         val context = view.root.context
         Glide.with(view.root)
@@ -33,9 +33,7 @@ class OompaLoompaViewHolder(
         view.email.text = oompaLoompa.email
 
         view.root.setOnClickListener {
-            oompaLoompa.id?.let { id ->
-                oompaLoompaListener?.onOompaLoompaClicked(id)
-            }
+            oompaLoompaListener?.onOompaLoompaClicked(oompaLoompa.id)
         }
     }
 }

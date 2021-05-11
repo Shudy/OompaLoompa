@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.eliasortiz.oompaloomparrhh.data.models.FilterOptionWithStatus
+import com.eliasortiz.oompaloomparrhh.data.models.FilterOptionWithStatusModel
 import com.eliasortiz.oompaloomparrhh.databinding.CustomChoiceOptionsBinding
 import com.eliasortiz.oompaloomparrhh.databinding.SingleChipChoiceBinding
 import com.eliasortiz.oompaloomparrhh.utils.capitalizeFirstLetter
@@ -21,7 +21,7 @@ class ChoiceOptions @JvmOverloads constructor(
 
     private val binding =
         CustomChoiceOptionsBinding.inflate(LayoutInflater.from(context), this, true)
-    private var optionsList: MutableList<FilterOptionWithStatus> = mutableListOf()
+    private var optionsList: MutableList<FilterOptionWithStatusModel> = mutableListOf()
     private var listener: ChoiceOptionsListener? = null
 
     private val onCheckListener: ChipGroup.OnCheckedChangeListener =
@@ -39,12 +39,12 @@ class ChoiceOptions @JvmOverloads constructor(
         this.listener = listener
     }
 
-    fun setTitleAndOptions(title: String, options: List<FilterOptionWithStatus>) {
+    fun setTitleAndOptions(title: String, options: List<FilterOptionWithStatusModel>) {
         binding.titleOptions.text = title
         setOptions(options)
     }
 
-    private fun setOptions(options: List<FilterOptionWithStatus>) {
+    private fun setOptions(options: List<FilterOptionWithStatusModel>) {
         optionsList.clear()
         optionsList.addAll(options)
         binding.choiceGroup.setOnCheckedChangeListener(null)
