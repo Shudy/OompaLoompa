@@ -19,27 +19,41 @@ class DetailViewModel
 ) : ViewModel() {
 
     private var oompaLoompa: OompaLoompaModel? = null
-    private val oompaLoompaLiveData: MutableLiveData<OompaLoompaModel?> =
-        MutableLiveData(oompaLoompa)
+    private val oompaLoompaLiveData: MutableLiveData<ResultResponse<Any>> = MutableLiveData()
 
     init {
+        loadData()
+    }
+
+    private fun loadData() {
         Coroutines.main {
+            oompaLoompaLiveData.postValue(ResultResponse.Loading)
+
             savedStateHandle.get<Int>("id")?.let { id ->
                 val response = repository.getOompaLoompa(id)
-                when (response) {
-                    is ResultResponse.Loading -> {
+                oompaLoompaLiveData.postValue(
+                    when (response) {
+                        is ResultResponse.Loading -> ResultResponse.Loading
+
+                        is ResultResponse.Failure -> ResultResponse.Failure(
+                            response.errorCode,
+                            response.message
+                        )
+
+                        is ResultResponse.Success -> {
+                            val data = response.data as OompaLoompaModel
+                            oompaLoompa = data
+                            ResultResponse.Success(oompaLoompa)
+                        }
                     }
-                    is ResultResponse.Failure -> {
-                    }
-                    is ResultResponse.Success -> {
-                        val data = response.data as OompaLoompaModel
-                        oompaLoompa = data
-                        oompaLoompaLiveData.postValue(oompaLoompa)
-                    }
-                }
+                )
             }
         }
     }
 
-    fun getOompaLoompaLiveData(): LiveData<OompaLoompaModel?> = oompaLoompaLiveData
+    fun getOompaLoompaLiveData(): LiveData<ResultResponse<Any>> = oompaLoompaLiveData
+
+    fun retryLoadData() {
+        loadData()
+    }
 }

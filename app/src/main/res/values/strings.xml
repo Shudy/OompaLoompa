@@ -14,5 +14,6 @@
     <string name="food">Food</string>
     <string name="song">Song</string>
     <string name="randomText">Random text</string>
-    <string name="errorNetworkConnection">\"No internet connection available\"</string>
+    <string name="errorNetworkConnection">No internet connection available</string>
+    <string name="retry">Retry</string>
 </resources>

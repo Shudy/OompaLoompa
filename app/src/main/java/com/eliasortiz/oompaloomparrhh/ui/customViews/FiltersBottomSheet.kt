@@ -57,11 +57,21 @@ class FiltersBottomSheet @JvmOverloads constructor(
     }
 
     fun setGenderOptions(title: String, options: List<FilterOptionWithStatusModel>) {
-        binding.genderFilter.setTitleAndOptions(title, options)
+        if (options.isEmpty()) {
+            binding.genderFilter.visibility = View.GONE
+        } else {
+            binding.genderFilter.visibility = View.VISIBLE
+            binding.genderFilter.setTitleAndOptions(title, options)
+        }
     }
 
     fun setProfessionOptions(title: String, options: List<FilterOptionWithStatusModel>) {
-        binding.professionFilter.setTitleAndOptions(title, options)
+        if (options.isEmpty()) {
+            binding.professionFilter.visibility = View.GONE
+        } else {
+            binding.professionFilter.visibility = View.VISIBLE
+            binding.professionFilter.setTitleAndOptions(title, options)
+        }
     }
 
     fun show() {

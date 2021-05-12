@@ -21,18 +21,15 @@ class HomeListViewModel
     private val repository: OompaLoompaRepository
 ) : ViewModel() {
 
+    private var lastPageRequested = 0
+    private var activeGenderFilter = ""
+    private var activeProfessionFilter = ""
+    private var hasMorePages = true
+    private var filterIsActive = false
+
     private val oompaLoompaList: MutableList<OompaLoompaModel> = mutableListOf()
     private var oompaLoompaFilteredList: MutableList<OompaLoompaModel> = mutableListOf()
-
-    private val oompaLoompaListLiveData: MutableLiveData<List<OompaLoompaModel>> =
-        MutableLiveData(oompaLoompaList)
-
-    private val isLoadingData: MutableLiveData<Boolean> = MutableLiveData(false)
-    private val showErrorLiveData: MutableLiveData<Pair<Boolean, String>> =
-        MutableLiveData(Pair(false, ""))
-
-    private var lastPageRequested = 0
-    private var hasMorePages = true
+    private val oompaLoompaListLiveData: MutableLiveData<ResultResponse<Any>> = MutableLiveData()
 
     private var genderList: MutableList<FilterOptionWithStatusModel> = mutableListOf()
     private var professionList: MutableList<FilterOptionWithStatusModel> = mutableListOf()
@@ -40,19 +37,11 @@ class HomeListViewModel
     private val filterOptionsLiveData: MutableLiveData<Pair<List<FilterOptionWithStatusModel>, List<FilterOptionWithStatusModel>>> =
         MutableLiveData(Pair(genderList, professionList))
 
-    private var activeGenderFilter = ""
-    private var activeProfessionFilter = ""
-    private var filterIsActive = false
-
     init {
         getNewOompaLoompasPage()
     }
 
-    fun getOompaLoompaListLiveData(): LiveData<List<OompaLoompaModel>> = oompaLoompaListLiveData
-
-    fun getIsLoadingDataLiveData(): LiveData<Boolean> = isLoadingData
-
-    fun getShowErrorLiveData(): LiveData<Pair<Boolean, String>> = showErrorLiveData
+    fun getOompaLoompaListLiveData(): LiveData<ResultResponse<Any>> = oompaLoompaListLiveData
 
     fun getOptionsListLiveData(): LiveData<Pair<List<FilterOptionWithStatusModel>, List<FilterOptionWithStatusModel>>> =
         filterOptionsLiveData
@@ -68,23 +57,22 @@ class HomeListViewModel
 
         if (hasMorePages) {
             Coroutines.main {
+                oompaLoompaListLiveData.postValue(ResultResponse.Loading)
 
-                isLoadingData.postValue(true)
-                lastPageRequested = page
-
-                val response = repository.getOompaLoompasList(page)
-                when (response) {
+                when (val response = repository.getOompaLoompasList(page)) {
                     is ResultResponse.Failure -> {
-                        isLoadingData.postValue(false)
-                        showErrorLiveData.postValue(Pair(true, response.message))
+                        oompaLoompaListLiveData.postValue(
+                            ResultResponse.Failure(
+                                response.errorCode,
+                                response.message
+                            )
+                        )
                     }
 
-                    ResultResponse.Loading -> {
-                    }
+                    ResultResponse.Loading -> oompaLoompaListLiveData.postValue(ResultResponse.Loading)
 
                     is ResultResponse.Success -> {
-                        isLoadingData.postValue(false)
-
+                        lastPageRequested = page
                         val data = response.data as OompaLoompasResponseModel
 
                         if (data.current == data.total) {
@@ -95,7 +83,7 @@ class HomeListViewModel
                         if (filterIsActive) {
                             applyFilters()
                         } else {
-                            oompaLoompaListLiveData.postValue(oompaLoompaList)
+                            oompaLoompaListLiveData.postValue(ResultResponse.Success(oompaLoompaList))
                         }
 
                         refreshFiltersList(data.results)
@@ -128,10 +116,6 @@ class HomeListViewModel
         filterOptionsLiveData.postValue(Pair(genderList, professionList))
     }
 
-    fun cleanError() {
-        showErrorLiveData.postValue(Pair(false, ""))
-    }
-
     fun applyGenderFilter(genderOption: String) {
         activeGenderFilter = genderOption
         applyFilters()
@@ -145,7 +129,7 @@ class HomeListViewModel
     private fun applyFilters() {
         if (activeGenderFilter.isEmpty() && activeProfessionFilter.isEmpty()) {
             if (filterIsActive) {
-                oompaLoompaListLiveData.postValue(oompaLoompaList)
+                oompaLoompaListLiveData.postValue(ResultResponse.Success(oompaLoompaList))
             }
             filterIsActive = false
         } else {
@@ -171,7 +155,12 @@ class HomeListViewModel
             if (oompaLoompaFilteredList.size < THRESHOLD) {
                 getNewOompaLoompasPage()
             }
-            oompaLoompaListLiveData.postValue(oompaLoompaFilteredList)
+            oompaLoompaListLiveData.postValue(ResultResponse.Success(oompaLoompaFilteredList))
         }
     }
+
+    fun retryLoadData() {
+        getNewOompaLoompasPage()
+    }
+
 }
